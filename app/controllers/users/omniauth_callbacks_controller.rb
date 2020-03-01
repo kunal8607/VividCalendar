@@ -1,6 +1,5 @@
 class Users::OmniauthCallbacksController < ApplicationController
 	def google_oauth2
-		debugger
     @user = User.from_omniauth(request.env["omniauth.auth"])
     if @user.persisted?
       flash[:notice] = I18n.t "devise.omniauth_callbacks.success", :kind => "Google"
@@ -10,13 +9,16 @@ class Users::OmniauthCallbacksController < ApplicationController
       @user.refresh_token = auth.credentials.refresh_token
       @user.save!
       sign_in(@user)
-      render json: @user
-      # redirect_to tasks_path
+      redirect_to events_index_path
     else
       puts @user.errors.to_a
       puts request.env["omniauth.auth"]
       session["devise.google_data"] = request.env["omniauth.auth"]
       redirect_to new_user_registration_url
     end
+  end
+
+  def failure
+  	redirect_to events_index_path
   end
 end
