@@ -37,11 +37,17 @@ module GoogleCalendarApi
     client
   end
 
-
-  
-
-  def sync_cals(user)
-    
+  def sync_events(user)
+    client = get_google_calendar_client(user)
+    calendars = client.list_calendar_lists.items
   end
+
+  def get_cals(user)
+    client = get_google_calendar_client(user)
+    calendars = client.list_calendar_lists.items.map {|i| {name: i.summary, bg_color: i.background_color, google_id: i.id}}
+  end
+
+  def
+
 
 end

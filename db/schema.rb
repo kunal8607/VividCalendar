@@ -16,12 +16,15 @@ ActiveRecord::Schema.define(version: 2020_03_01_052620) do
     t.string "name"
     t.string "bg_color"
     t.string "google_id"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_calendars_on_user_id"
   end
 
   create_table "events", force: :cascade do |t|
     t.string "title"
+    t.string "google_id"
     t.text "description"
     t.datetime "start_date"
     t.datetime "end_date"

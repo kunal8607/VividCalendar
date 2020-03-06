@@ -18,7 +18,7 @@ class Users::OmniauthCallbacksController < ApplicationController
     end
   end
 
-  def failure
-  	redirect_to events_index_path
-  end
+  # def failure
+  # 	redirect_to events_index_path
+  # end
 end

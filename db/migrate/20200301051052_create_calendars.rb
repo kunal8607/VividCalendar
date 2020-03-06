@@ -4,6 +4,7 @@ class CreateCalendars < ActiveRecord::Migration[5.2]
       t.string :name
       t.string :bg_color
       t.string :google_id
+      t.references :user
       t.timestamps
     end
   end
