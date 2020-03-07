@@ -67,4 +67,5 @@ gem "omniauth-google-oauth2"
 gem 'google-api-client'
 gem 'bootstrap', '~> 4.4.1'
 gem 'jquery-rails'
+gem 'whenever', require: false
 

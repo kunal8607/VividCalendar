@@ -1,6 +1,6 @@
 class Calendar < ApplicationRecord
   extend GoogleCalendarApi
-  has_many :events
+  has_many :events, dependent: :destroy
   belongs_to :user
 
   def self.sync_cal user
