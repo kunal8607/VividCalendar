@@ -47,7 +47,5 @@ module GoogleCalendarApi
     calendars = client.list_calendar_lists.items.map {|i| {name: i.summary, bg_color: i.background_color, google_id: i.id}}
   end
 
-  def
-
 
 end

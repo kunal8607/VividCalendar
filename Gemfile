@@ -66,4 +66,3 @@ gem "omniauth-google-oauth2"
 
 gem 'google-api-client'
 
-
