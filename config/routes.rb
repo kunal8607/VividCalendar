@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  get 'calendars/index'
-  get 'calendars/show'
+  # get 'calendars/index'
+  # get 'calendars/show'
   get 'events/index'
   # devise_for :users
   get 'home/index'

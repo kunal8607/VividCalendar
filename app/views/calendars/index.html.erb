@@ -1,8 +1,21 @@
-<h1>Calendars#index</h1>
-<p>Find me in app/views/calendars/index.html.erb</p>
+<h1>My Calendars listing</h1>
+
+<p>Select any calendar to list the events</p>
 
 
-<% @cals.each do |i|%>
- <%=i.name %>
- <br>
-<%end%>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @cals.each do |cal| %>
+    <tr>
+        <td><%= link_to cal.name, calendar_path(cal) %></td>
+    </tr>  
+    <% end %>
+  </tbody>
+</table>

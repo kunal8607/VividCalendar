@@ -290,7 +290,8 @@ Devise.setup do |config|
 
   config.omniauth :google_oauth2, "927961015660-jc1pmk12copb582o2ol12ndp4qk16rqb.apps.googleusercontent.com", "AR5YSAajrRi91iyogA8p2Z9Z", {
       callback_url: "http://localhost:3000/users/auth/google_oauth2/callback", 
-      access_type: "offline", 
+      access_type: "offline",
+      skip_jwt: true,
       prompt: "consent",
       select_account: true,
       scope: 'userinfo.email, calendar, userinfo.profile' 

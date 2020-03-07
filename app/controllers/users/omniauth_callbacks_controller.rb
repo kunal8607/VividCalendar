@@ -9,7 +9,7 @@ class Users::OmniauthCallbacksController < ApplicationController
       @user.refresh_token = auth.credentials.refresh_token
       @user.save!
       sign_in(@user)
-      redirect_to events_index_path
+      redirect_to calendars_path
     else
       puts @user.errors.to_a
       puts request.env["omniauth.auth"]
@@ -17,8 +17,4 @@ class Users::OmniauthCallbacksController < ApplicationController
       redirect_to new_user_registration_url
     end
   end
-
-  # def failure
-  # 	redirect_to events_index_path
-  # end
 end
