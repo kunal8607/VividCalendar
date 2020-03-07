@@ -13,10 +13,8 @@ module GoogleCalendarApi
       "web" => {
         "access_token" => current_user.access_token,
         "refresh_token" => current_user.refresh_token,
-        # "client_id" => Rails.application.credentials.google_client_id,
-        # "client_secret" => Rails.application.credentials.google_client_secret
-        "client_id" => "927961015660-jc1pmk12copb582o2ol12ndp4qk16rqb.apps.googleusercontent.com",
-        "client_secret" => "AR5YSAajrRi91iyogA8p2Z9Z"
+        "client_id" => Rails.application.credentials.google_client_id,
+        "client_secret" => Rails.application.credentials.google_client_secret
       }
     })
     begin

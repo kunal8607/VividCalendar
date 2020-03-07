@@ -1,5 +1,7 @@
 class Calendar < ApplicationRecord
   extend GoogleCalendarApi
+  validates :name, presence: true
+  validates :google_id, presence: true
   has_many :events, dependent: :destroy
   belongs_to :user
 

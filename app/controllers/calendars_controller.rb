@@ -1,6 +1,6 @@
 class CalendarsController < ApplicationController
   def index
-  	if current_user.calendars.empty?
+  	if current_user.calendars.empty? || params[:sync] == 'true'
   	 calenders= Calendar.sync_cal current_user
   	 @cals = current_user.calendars
   	else

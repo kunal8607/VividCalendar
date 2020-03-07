@@ -288,7 +288,7 @@ Devise.setup do |config|
   #   include Turbolinks::Controller
   # end
 
-  config.omniauth :google_oauth2, "927961015660-jc1pmk12copb582o2ol12ndp4qk16rqb.apps.googleusercontent.com", "AR5YSAajrRi91iyogA8p2Z9Z", {
+  config.omniauth :google_oauth2, Rails.application.credentials.google_client_id, Rails.application.credentials.google_client_secret, {
       callback_url: "http://localhost:3000/users/auth/google_oauth2/callback", 
       access_type: "offline",
       skip_jwt: true,

@@ -31,7 +31,7 @@
               <%= link_to "Sign in", user_google_oauth2_omniauth_authorize_path, class: "list-group-item" %>
             <% else %>
              <%= link_to "Sign Out", destroy_user_session_path, method: :delete, class: "list-group-item" %>
-              <a href="#" class="list-group-item">Sync My Calendar</a>
+              <%= link_to "Sync My Calendar", calendars_path(sync: true), class: "list-group-item" %>
             <% end %>
           </div>
         </div><!--/.sidebar-offcanvas-->
