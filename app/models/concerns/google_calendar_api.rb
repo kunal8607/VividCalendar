@@ -1,25 +1,28 @@
-require "google/apis/calendar_v3"
-require "google/api_client/client_secrets.rb"
+# frozen_string_literal: true
+
+require 'google/apis/calendar_v3'
+require 'google/api_client/client_secrets.rb'
 
 module GoogleCalendarApi
-
   include ActiveSupport::Concern
 
-  def get_google_calendar_client current_user
+  def get_google_calendar_client(current_user)
     client = Google::Apis::CalendarV3::CalendarService.new
-    return unless (current_user.present? && current_user.access_token.present? && current_user.refresh_token.present?)
+    unless current_user.present? && current_user.access_token.present? && current_user.refresh_token.present?
+      return
+    end
 
     secrets = Google::APIClient::ClientSecrets.new({
-      "web" => {
-        "access_token" => current_user.access_token,
-        "refresh_token" => current_user.refresh_token,
-        "client_id" => Rails.application.credentials.google_client_id,
-        "client_secret" => Rails.application.credentials.google_client_secret
-      }
-    })
+                                                     'web' => {
+                                                       'access_token' => current_user.access_token,
+                                                       'refresh_token' => current_user.refresh_token,
+                                                       'client_id' => Rails.application.credentials.google_client_id,
+                                                       'client_secret' => Rails.application.credentials.google_client_secret
+                                                     }
+                                                   })
     begin
       client.authorization = secrets.to_authorization
-      client.authorization.grant_type = "refresh_token"
+      client.authorization.grant_type = 'refresh_token'
 
       if current_user.expired?
         client.authorization.refresh!
@@ -29,7 +32,7 @@ module GoogleCalendarApi
           expires_at: client.authorization.expires_at.to_i
         )
       end
-    rescue => e
+    rescue StandardError => e
       raise e.message
     end
     client
@@ -42,8 +45,6 @@ module GoogleCalendarApi
 
   def get_cals(user)
     client = get_google_calendar_client(user)
-    calendars = client.list_calendar_lists.items.map {|i| {name: i.summary, bg_color: i.background_color, google_id: i.id}}
+    calendars = client.list_calendar_lists.items.map { |i| { name: i.summary, bg_color: i.background_color, google_id: i.id } }
   end
-
-
 end
