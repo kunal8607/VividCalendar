@@ -22,7 +22,9 @@ class Calendar < ApplicationRecord
       events = client.list_events(i.google_id).items
       events.each do |e|
         event = Event.find_or_initialize_by(google_id: e.id, calendar_id: i.id)
-        event.assign_attributes({ title: e.summary, description: e.description, start_date: e.start.date_time || e.start.date, end_date: e.end.date_time || e.end.date })
+        event.assign_attributes({ title: e.summary, description: e.description,
+                                  start_date: e.start.date_time || e.start.date,
+                                  end_date: e.end.date_time || e.end.date })
         event.save
       end
     end

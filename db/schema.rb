@@ -58,6 +58,7 @@ ActiveRecord::Schema.define(version: 20_200_301_052_620) do
     t.integer 'expires_at'
     t.string 'refresh_token'
     t.index ['email'], name: 'index_users_on_email', unique: true
-    t.index ['reset_password_token'], name: 'index_users_on_reset_password_token', unique: true
+    t.index ['reset_password_token'], name: 'index_users_on_reset_password_token',
+                                      unique: true
   end
 end

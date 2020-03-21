@@ -13,9 +13,11 @@ class CalendarsController < ApplicationController
   def show
     @calendar = Calendar.find(params[:id])
     if params[:older] == 'true'
-      @events = @calendar.events.where('start_date <= ?', Date.today).order(start_date: :desc)
+      @events = @calendar.events.where('start_date <= ?', Date.today)
+                         .order(start_date: :desc)
     else
-      @events = @calendar.events.where('start_date >= ?', Date.today).order(:start_date)
+      @events = @calendar.events.where('start_date >= ?', Date.today)
+                         .order(:start_date)
     end
   end
 end

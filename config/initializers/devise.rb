@@ -8,7 +8,6 @@ Devise.setup do |config|
   # confirmation, reset password and unlock tokens in the database.
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
-  # config.secret_key = 'bab8fdb704023c20b6bb1c12ab41ad377a7907c29afe0a1ee107035f825b68047db3a7b725893c1b239f5085e3003a5075b9257b75b0701f63c4184559a13120'
 
   # ==> Controller configuration
   # Configure the parent class to the devise controllers.
@@ -112,15 +111,6 @@ Devise.setup do |config|
   # algorithm), the cost increases exponentially with the number of stretches (e.g.
   # a value of 20 is already extremely slow: approx. 60 seconds for 1 calculation).
   config.stretches = Rails.env.test? ? 1 : 11
-
-  # Set up a pepper to generate the hashed password.
-  # config.pepper = '7c356b5fd4e05290f7000d46b724385e4d08a861e61e5f00db82a75a58d763421d773ebf94ff45b5c042ab79d4e01f37b0e38e635404eded796d4c14e8ac01be'
-
-  # Send a notification to the original email when the user's email is changed.
-  # config.send_email_changed_notification = false
-
-  # Send a notification email when the user's password is changed.
-  # config.send_password_change_notification = false
 
   # ==> Configuration for :confirmable
   # A period that the user is allowed to access the website even without
@@ -288,12 +278,13 @@ Devise.setup do |config|
   #   include Turbolinks::Controller
   # end
 
-  config.omniauth :google_oauth2, Rails.application.credentials.google_client_id, Rails.application.credentials.google_client_secret, {
-    callback_url: 'http://localhost:3000/users/auth/google_oauth2/callback',
-    access_type: 'offline',
-    skip_jwt: true,
-    prompt: 'consent',
-    select_account: true,
-    scope: 'userinfo.email, calendar, userinfo.profile'
-  }
+  config.omniauth :google_oauth2, Rails.application.credentials.google[:client_id],
+                  Rails.application.credentials.google[:client_secret], {
+                    callback_url: 'http://localhost:3000/users/auth/google_oauth2/callback',
+                    access_type: 'offline',
+                    skip_jwt: true,
+                    prompt: 'consent',
+                    select_account: true,
+                    scope: 'userinfo.email, calendar, userinfo.profile'
+                  }
 end
